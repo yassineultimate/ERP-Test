@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AuthProvider } from './contexts/AuthContext';
 import { DataProvider } from './contexts/DataContext';
 import { LanguageProvider } from './contexts/LanguageContext';
+import { PurchaseProvider } from './contexts/PurchaseContext';
 import Layout from './components/Layout';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
@@ -24,24 +25,26 @@ function App() {
     <LanguageProvider>
       <AuthProvider>
         <DataProvider>
-          <Router>
-            <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
-                <Route index element={<Navigate to="/dashboard" replace />} />
-                <Route path="dashboard" element={<Dashboard />} />
-                <Route path="customers" element={<Customers />} />
-                
-               
-          
-                <Route path="purchases" element={<Purchases />} />
-                <Route path="hr" element={<HumanResources />} />
+          <PurchaseProvider>
+            <Router>
+              <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
+                  <Route index element={<Navigate to="/dashboard" replace />} />
+                  <Route path="dashboard" element={<Dashboard />} />
+                  <Route path="customers" element={<Customers />} />
+                  
+                 
             
-                <Route path="reports" element={<Reports />} />
-                <Route path="profile" element={<Profile />} />
-              </Route>
-            </Routes>
-          </Router>
+                  <Route path="purchases" element={<Purchases />} />
+                  <Route path="hr" element={<HumanResources />} />
+              
+                  <Route path="reports" element={<Reports />} />
+                  <Route path="profile" element={<Profile />} />
+                </Route>
+              </Routes>
+            </Router>
+          </PurchaseProvider>
         </DataProvider>
       </AuthProvider>
     </LanguageProvider>
